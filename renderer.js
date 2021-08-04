@@ -9,9 +9,9 @@ let $groupVersion = document.querySelector(".group-version");
 let $progressVersion = document.querySelector(".progress-text-version");
 let $progressInnerVersion = document.querySelector(".progress-inner-version");
 
-navigator.clipboard.readText().then((v) => {
+/* navigator.clipboard.readText().then((v) => {
   ipcRenderer.send("clipboard", v);
-});
+}); */
 
 ipcRenderer.on("progress", (evt, value) => {
   $progress.textContent = value + "%";

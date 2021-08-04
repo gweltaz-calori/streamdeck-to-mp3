@@ -1,9 +1,9 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require("electron");
-const clipboardy = require("clipboardy");
+const { app, BrowserWindow, ipcMain, clipboard } = require("electron");
 const { exec, spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const log = require("electron-log");
 var https = require("follow-redirects").https;
 const VERSION_STATUS = require("./enums");
 
@@ -86,23 +86,22 @@ app.whenReady().then(() => {
     });
   });
 
-  let clipboard = null;
-
-  ipcMain.on("clipboard", (e, value) => {
-    clipboard = value;
-  });
+  console.log(clipboard.readText());
+  let clipboardValue = clipboard.readText();
 
   function download() {
+    let totalStdout = "";
     const ytb = spawn(ytbPath, [
       "--extract-audio",
       "--audio-format",
       "mp3",
-      clipboard,
+      clipboardValue,
       "-o",
       `${process.env.USERPROFILE}\\Downloads\\%(title)s.%(ext)s`,
     ]);
     ytb.stdout.on("data", (data) => {
       let stringifyData = data.toString();
+      mainWindow.webContents.send("ev", stringifyData);
       if (stringifyData.includes("%")) {
         const regex = /([0-9.]+)%/;
         const progress = regex.exec(stringifyData)[1];
