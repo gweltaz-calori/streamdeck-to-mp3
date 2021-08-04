@@ -25,9 +25,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
 }
 
 span {
   margin-left: 10px;
   font-weight: bold;
+}
+
+.group-ytb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.group-ytb span {
+  margin-bottom: 10px;
+}
+
+.group-version {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

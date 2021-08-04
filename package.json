@@ -23,10 +23,11 @@
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
-    "electron-packager": "^15.3.0"
+    "electron-packager": "^15.3.0",
+    "follow-redirects": "^1.14.1"
   },
   "build": {
-    "asarUnpack" : [
+    "asarUnpack": [
       "youtube-dl/youtube-dl.exe"
     ]
   }
