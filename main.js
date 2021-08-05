@@ -3,7 +3,6 @@ const { app, BrowserWindow, ipcMain, clipboard } = require("electron");
 const { exec, spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-const log = require("electron-log");
 var https = require("follow-redirects").https;
 const VERSION_STATUS = require("./enums");
 
@@ -15,12 +14,18 @@ function createWindow() {
     width: 350,
     height: 200,
     frame: false,
+    show: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
   mainWindow.loadFile("index.html");
+
+  mainWindow.webContents.once("did-finish-load", () => {
+    mainWindow.show();
+    mainWindow.focus();
+  });
 }
 
 app.whenReady().then(() => {
@@ -86,7 +91,6 @@ app.whenReady().then(() => {
     });
   });
 
-  console.log(clipboard.readText());
   let clipboardValue = clipboard.readText();
 
   function download() {
