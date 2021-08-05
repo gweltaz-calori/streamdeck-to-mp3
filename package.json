@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder --win"
   },
   "keywords": [
     "Electron",
@@ -27,6 +27,7 @@
     "asarUnpack": [
       "youtube-dl/youtube-dl.exe"
     ],
-    "artifactName" : "streamdeck-to-mp3.${ext}"
+    "artifactName" : "streamdeck-to-mp3.${ext}",
+    "target" : 
   }
 }
