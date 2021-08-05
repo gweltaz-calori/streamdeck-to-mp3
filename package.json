@@ -27,7 +27,6 @@
     "asarUnpack": [
       "youtube-dl/youtube-dl.exe"
     ],
-    "artifactName" : "streamdeck-to-mp3.${ext}",
-    "target" : 
+    "artifactName" : "streamdeck-to-mp3.${ext}"
   }
 }
